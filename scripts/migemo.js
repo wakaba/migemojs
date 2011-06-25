@@ -7,9 +7,9 @@ if (!self.MigemoJS) MigemoJS = {
     return null;
   }, // getScriptURL
 
-	getRegExp : function(aInput, autoSplit) 
-	{
-                var engine = new MigemoJS.Engine();
+  getRegExp : function(aInput, autoSplit) {
+    this.engine = this.engine || new MigemoJS.Engine ();
+    var engine = this.engine;
 
 		var myExp = [];
 
@@ -66,9 +66,10 @@ if (!self.MigemoJS) MigemoJS = {
 }; // MigemoJS.RegExpGenerator
 
 MigemoJS.Engine = function () {
-        this.dictionary = new MigemoJS.Dictionary();
-        this.transform = new MigemoJS.TextTransform();
-};
+  this.dictionary = new MigemoJS.Dictionary ();
+  this.dictionary.loadAll ();
+  this.transform = new MigemoJS.TextTransform ();
+}; // MigemoJS.Engine
 
 MigemoJS.Engine.prototype = {
 	getRegExpFor : function(aInput) 
@@ -78,8 +79,6 @@ MigemoJS.Engine.prototype = {
 		aInput = aInput.toLowerCase();
 
 		var transform = this.transform;
-
-		mydump('noCache');
 
 		var hira = transform.expand(
 				MigemoJS.TextUtils.sanitizeForTransformOutput(
@@ -1148,9 +1147,7 @@ MigemoJS.TextTransform.prototype = {
    
 }; 
 
-MigemoJS.Dictionary = function () {
-        this.load();
-};
+MigemoJS.Dictionary = function () { };
 
 MigemoJS.Dictionary.prototype = {
   getBaseURL: function () {
@@ -1160,18 +1157,25 @@ MigemoJS.Dictionary.prototype = {
     return url+ 'dicts/';
   }, // getBaseURL
 
-  load : function() {
-        var base = this.getBaseURL ();
-        for (var i = 0, maxi = this.cList.length; i < maxi; i++) {
-          var fileName = base + this.cList[i] + 'a2.txt';
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('GET', fileName, false);
-                        xhr.send(null);
-                        if (xhr.status < 400) {
-                                this.list[this.cList[i]] = xhr.responseText;
-                        }
-		}
-	},
+  loadAll: function () {
+    var self = this;
+    var base = this.getBaseURL ();
+    var suffix = this.DEBUG_LOADING ? '?' + (new Date).valueOf () : '';
+    for (var i = 0, maxi = this.cList.length; i < maxi; i++) {
+      var letter = this.cList[i];
+      var fileName = base + letter + 'a2.txt' + suffix;
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', fileName, true);
+      xhr.onreadystatechange = (function (xhr, letter) { return function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status < 400) {
+            self.list[letter] = xhr.responseText;
+          }
+        }
+      } }) (xhr, letter);
+      xhr.send(null);
+    }
+  }, // loadAll
  
 	getDicFor : function(aLetter) 
 	{
@@ -1275,4 +1279,28 @@ function mydump(aString)
 		dump((aString.length > 1024 ? aString.substring(0, 1024) : aString )+'\n');
 */
 }
- 
+
+/*
+
+Migemo.js - Yet another Migemo implementation in JavaScript
+Copyright 2011 Wakaba <w@suika.fam.cx>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+02110-1301, USA.
+
+This program derived from the XUL/Migemo.  For the list of the
+original authors and the original license terms, see documentations
+under the directory "docs/xulmigemo/".
+
+*/

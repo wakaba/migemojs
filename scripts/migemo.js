@@ -11,23 +11,22 @@ if (!self.MigemoJS) MigemoJS = {
     this.engine = this.engine || new MigemoJS.Engine ();
     var engine = this.engine;
 
-		var myExp = [];
+    var myExp = [];
 
-		var romanTerm;
-		var romanTerms = engine.splitInput(aInput);
-		mydump('ROMAN: '+romanTerms.join('/').toLowerCase()+'\n');
+    var romanTerm;
+    var romanTerms = engine.splitInput(aInput);
+    mydump('ROMAN: '+romanTerms.join('/').toLowerCase()+'\n');
 
-		var pattern, romanTermPart, nextPart;
-		for (var i = 0, maxi = romanTerms.length; i < maxi; i++)
-		{
-			romanTerm = romanTerms[i].toLowerCase();
+    var pattern, romanTermPart, nextPart;
+    for (var i = 0, maxi = romanTerms.length; i < maxi; i++) {
+      romanTerm = romanTerms[i].toLowerCase ();
+      romanTerm = engine.normalizeKeyInput (romanTerm);
 
-			pattern = engine.getRegExpFor(romanTerm);
-			if (!pattern) continue;
-			myExp.push(pattern);
+      pattern = engine.getRegExpFor (romanTerm);
+      if (!pattern) continue;
+      myExp.push (pattern);
 
-
-			if (!autoSplit) continue;
+      if (!autoSplit) continue;
 
 			romanTermPart = romanTerm;
 			while (romanTermPart.length > 1)
@@ -72,8 +71,11 @@ MigemoJS.Engine = function () {
 }; // MigemoJS.Engine
 
 MigemoJS.Engine.prototype = {
-	getRegExpFor : function(aInput) 
-	{
+  normalizeKeyInput: function (input) {
+    return this.transform.normalizeKeyInput (input);
+  }, // normalizeKeyInput
+
+  getRegExpFor: function(aInput) {
 		if (!aInput) return null;
 
 		aInput = aInput.toLowerCase();

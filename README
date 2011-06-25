@@ -10,6 +10,13 @@ This is a Migemo implementation in JavaScript.
     regexp = new RegExp (MigemoJS.getRegExp (input));
   </script>
 
+* Availability
+
+The git repository for this script is available from:
+
+- <https://github.com/wakaba/migemojs>
+- <http://suika.fam.cx/gate/git/wi/migemojs.git/tree>
+
 * See also
 
 Migemo: ローマ字のまま日本語をインクリメンタル検索

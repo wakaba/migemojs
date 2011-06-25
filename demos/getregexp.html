@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang=en>
+<title>Generate regular expressions</title>
+<body onload="update (document.getElementsByTagName ('input')[0].value)">
+
+<p><label>Input: 
+<input onchange="update (this.value)" oninput="update (this.value)"></label>
+
+<p id=error></p>
+<p id=result>No input</p>
+
+<script src="../scripts/migemo.js" id=script-migemojs></script>
+<script>
+  window.onerror = function () {
+    document.getElementById ('error').appendChild
+      (document.createTextNode (arguments[0] + ' at ' + arguments[1] + ' line ' + arguments[2]));
+  };
+  function update (value) {
+    var result = MigemoJS.getRegExp (value);
+    document.getElementById ('result').firstChild.data = result;
+  }
+</script>

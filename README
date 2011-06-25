@@ -1,0 +1,34 @@
+Migemo.js - Yet another Migemo implementation in JavaScript
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a Migemo implementation in JavaScript.
+
+* Usage
+
+  <script src="path/to/migemo.js" id=script-migemojs></script>
+  <script>
+    regexp = new RegExp (MigemoJS.getRegExp (input));
+  </script>
+
+* See also
+
+Migemo: ローマ字のまま日本語をインクリメンタル検索
+<http://0xcc.net/migemo/>.
+
+XUL Apps > XUL/Migemo - outsider reflex
+<http://piro.sakura.ne.jp/xul/_xulmigemo.html>.
+
+Migemo <http://suika.fam.cx/~wakaba/wiki/sw/n/Migemo>.
+
+* Author
+
+Wakaba <w@suika.fam.cx>.
+
+* Acknowledgements
+
+The most essential part of this script is derived from XUL/Migemo, an
+XUL implementation of Migemo for Mozilla browsers.
+
+* License
+
+GPL2.  See the "LICENSE" file.

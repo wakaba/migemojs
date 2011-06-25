@@ -10,6 +10,8 @@ This is a Migemo implementation in JavaScript.
     regexp = new RegExp (MigemoJS.getRegExp (input));
   </script>
 
+See also demo: <http://suika.fam.cx/migemojs/demos/getregexp.html>.
+
 * Availability
 
 The git repository for this script is available from:

@@ -1305,4 +1305,9 @@ This program derived from the XUL/Migemo.  For the list of the
 original authors and the original license terms, see documentations
 under the directory "docs/xulmigemo/".
 
+See following git repositories for the latest version:
+
+- <https://github.com/wakaba/migemojs>
+- <http://suika.fam.cx/gate/git/wi/migemojs.git/tree>
+
 */

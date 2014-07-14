@@ -10,14 +10,15 @@ This is a Migemo implementation in JavaScript.
     regexp = new RegExp (MigemoJS.getRegExp (input));
   </script>
 
-See also demo: <http://suika.fam.cx/migemojs/demos/getregexp.html>.
+(Don't forget the |id| attribute of the first |script| element.)
+
+See also demo: <http://suika.suikawiki.org/migemojs/demos/getregexp.html>.
 
 * Availability
 
 The git repository for this script is available from:
 
 - <https://github.com/wakaba/migemojs>
-- <http://suika.fam.cx/gate/git/wi/migemojs.git/tree>
 
 * See also
 
@@ -27,15 +28,15 @@ Migemo: ローマ字のまま日本語をインクリメンタル検索
 XUL Apps > XUL/Migemo - outsider reflex
 <http://piro.sakura.ne.jp/xul/_xulmigemo.html>.
 
-Migemo <http://suika.fam.cx/~wakaba/wiki/sw/n/Migemo>.
+SuikaWiki:Migemo <http://wiki.suikawiki.org/n/Migemo>.
 
 * Author
 
-Wakaba <w@suika.fam.cx>.
+Wakaba <wakaba@suikawiki.org>.
 
 * Acknowledgements
 
-The most essential part of this script is derived from XUL/Migemo, an
+The most essential part of this script is derived from XUL/Migemo, a
 XUL implementation of Migemo for Mozilla browsers.
 
 * License

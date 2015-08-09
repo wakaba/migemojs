@@ -141,7 +141,7 @@ MigemoJS.Engine.prototype = {
 			if (/[\[\(]/.test(zen)) pattern += (pattern ? '|' : '') + zen;
 			if (/[\[\(]/.test(hiraAndKana)) pattern += (pattern ? '|' : '') + hiraAndKana;
 
-			// ˆê•¶š‚¾‚¯‚Ì€–Ú‚¾‚¯‚ÍA”²‚«o‚µ‚Ä•¶šƒNƒ‰ƒX‚É‚Ü‚Æ‚ß‚é
+			// ä¸€æ–‡å­—ã ã‘ã®é …ç›®ã ã‘ã¯ã€æŠœãå‡ºã—ã¦æ–‡å­—ã‚¯ãƒ©ã‚¹ã«ã¾ã¨ã‚ã‚‹
 			var ichimoji = searchterm
 							.replace(/^..+$\n?/mg, '')
 							.split('\n')
@@ -152,14 +152,14 @@ MigemoJS.Engine.prototype = {
 				pattern += (pattern ? '|' : '') + '[' + ichimoji + ']';
 			}
 
-			// foo, foobar, fooee... ‚Æ‚¢‚Á‚½•—‚ÉA“¯‚¶•¶š—ñ‚Ån‚Ü‚é•¡”‚ÌŒó•â‚ª‚ ‚éê‡‚ÍA
-			// Å‚à’Z‚¢Œó•âi‚±‚Ì—á‚È‚çfooj‚¾‚¯‚É‚·‚é
+			// foo, foobar, fooee... ã¨ã„ã£ãŸé¢¨ã«ã€åŒã˜æ–‡å­—åˆ—ã§å§‹ã¾ã‚‹è¤‡æ•°ã®å€™è£œãŒã‚ã‚‹å ´åˆã¯ã€
+			// æœ€ã‚‚çŸ­ã„å€™è£œï¼ˆã“ã®ä¾‹ãªã‚‰fooï¼‰ã ã‘ã«ã™ã‚‹
 			searchterm = searchterm
 				.split('\n')
 				.sort()
 				.join('\n')
 				.replace(/^(.+)$(\n\1.*$)+/img, '$1')
-				.replace(/^.$\n?/mg, ''); // ˆê•¶š‚¾‚¯‚Ì€–Ú‚Í—pÏ‚İ‚È‚Ì‚Åíœ
+				.replace(/^.$\n?/mg, ''); // ä¸€æ–‡å­—ã ã‘ã®é …ç›®ã¯ç”¨æ¸ˆã¿ãªã®ã§å‰Šé™¤
 			searchterm = MigemoJS.TextUtils.sanitize(searchterm)
 				.replace(/\n/g, '|');
 			pattern += (pattern ? '|' : '') + searchterm;//.substring(0, searchterm.length-1);
@@ -169,7 +169,7 @@ MigemoJS.Engine.prototype = {
 
 			mydump('pattern(from dic):'+encodeURIComponent(pattern));
 		}
-		else { // «‘‚Éˆø‚Á‚©‚©‚ç‚È‚©‚Á‚½–Í—l‚È‚Ì‚Å©‘O‚Ì•¶š—ñ‚¾‚¯
+		else { // è¾æ›¸ã«å¼•ã£ã‹ã‹ã‚‰ãªã‹ã£ãŸæ¨¡æ§˜ãªã®ã§è‡ªå‰ã®æ–‡å­—åˆ—ã ã‘
 			pattern = original;
 			if (original != zen) pattern += '|' + zen;
 			if (original != hiraAndKana) pattern += '|' + hiraAndKana;
@@ -186,7 +186,7 @@ MigemoJS.Engine.prototype = {
 	{
 		var terms = (
 					(/^[A-Z]{2,}/.test(aInput)) ?
-						aInput.replace(/([a-z])/g, '\t$1') : // CapsLock‚³‚ê‚Ä‚éê‡‚Í¬•¶š‚Å‹æØ‚é
+						aInput.replace(/([a-z])/g, '\t$1') : // CapsLockã•ã‚Œã¦ã‚‹å ´åˆã¯å°æ–‡å­—ã§åŒºåˆ‡ã‚‹
 						aInput.replace(/([A-Z])/g, '\t$1')
 				)
 				.replace(/([\uff66-\uff9fa-z])([0-9])/i, '$1\t$2')
@@ -223,13 +223,13 @@ MigemoJS.Engine.prototype = {
 		if (ignoreLatinModifiers)
 			str = transform.addLatinModifiers(str);
 
-		var tmp  = '^' + hira + '.+$'; //“ú–{Œê
-		var tmpA = '^(' + str + ').+$'; //ƒAƒ‹ƒtƒ@ƒxƒbƒg
+		var tmp  = '^' + hira + '.+$'; //æ—¥æœ¬èª
+		var tmpA = '^(' + str + ').+$'; //ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆ
 		var exp  = new RegExp(tmp, 'mg');
 		var expA = new RegExp(tmpA, 'mg');
 
 		var firstlet = '';
-		firstlet = aInput.charAt(0);//Å‰‚Ì•¶š
+		firstlet = aInput.charAt(0);//æœ€åˆã®æ–‡å­—
 		mydump(firstlet+' dic loaded');
 
 		var lines = [];
@@ -265,7 +265,7 @@ MigemoJS.TextUtils = {
 	
 	sanitize : function(str) 
 	{
-		//	[]^.+*?$|{}\(),  ³‹K•\Œ»‚Ìƒƒ^ƒLƒƒƒ‰ƒNƒ^‚ğƒGƒXƒP[ƒv
+		//	[]^.+*?$|{}\(),  æ­£è¦è¡¨ç¾ã®ãƒ¡ã‚¿ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—
 		str = str.replace(this.kSANITIZE_PATTERN, "\\$1");
 		return str;
 	},
@@ -520,7 +520,7 @@ MigemoJS.TextTransform.prototype = {
 		{
 			kata = pairs[i+1]
 			MigemoJS.compat.arraymap(kata.split('|'), function(aKata, aIndex) {
-				if (aKata == '-') return; // —áŠO
+				if (aKata == '-') return; // ä¾‹å¤–
 				self.KATAHIRA_Hash[aKata] = pairs[i];
 				self.KATAPAT.push(aKata);
 				if (aIndex == 0) {
@@ -793,7 +793,7 @@ MigemoJS.TextTransform.prototype = {
 						var char;
 						while (str.length > 0)
 						{
-							if (str.indexOf('\u3046\u309b') == 0) { // u‚¤Jv‚¾‚¯‚Í“Á—á‚Åˆê•¶šˆµ‚¢
+							if (str.indexOf('\u3046\u309b') == 0) { // ã€Œã†ã‚›ã€ã ã‘ã¯ç‰¹ä¾‹ã§ä¸€æ–‡å­—æ‰±ã„
 								char = str.substring(0, 2);
 								str  = str.substring(1);
 							}
@@ -1101,17 +1101,17 @@ MigemoJS.TextTransform.prototype = {
 	{
 		var code = aStr.charCodeAt(0);
 
-		// ‘SŠp‚©‚È
+		// å…¨è§’ã‹ãª
 		if (/^[\u304b\u304d\u304f\u3051\u3053\u3055\u3057\u3059\u305b\u305d\u305f\u3061\u3064\u3066\u3068\u306f\u3072\u3075\u3078\u307b\u30ab\u30ad\u30af\u30b1\u30b3\u30b5\u30b7\u30b9\u30bb\u30bd\u30bf\u30c1\u30c4\u30c6\u30c8\u30cf\u30d2\u30d5\u30d8\u30db][\uff9e\u309b]/.test(aStr)) {
 			return String.fromCharCode(code+1);
 		}
 		else if (/^[\u306f\u3072\u3075\u3078\u307b\u30cf\u30d2\u30d5\u30d8\u30db][\uff9f\u309c]/.test(aStr)) {
 			return String.fromCharCode(code+2);
 		}
-		else if (/^[\u30a6\uff73]/.test(aStr)) { // ‘SŠpE”¼Šp‚Ìƒ”
+		else if (/^[\u30a6\uff73]/.test(aStr)) { // å…¨è§’ãƒ»åŠè§’ã®ãƒ´
 			return '\u30f4';
 		}
-		else { // ”¼ŠpƒJƒi
+		else { // åŠè§’ã‚«ãƒŠ
 			switch (aStr)
 			{
 				case '\uff76\uff9e': return '\u30ac';

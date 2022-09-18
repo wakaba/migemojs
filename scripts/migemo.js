@@ -1285,7 +1285,7 @@ function mydump(aString)
 /*
 
 Migemo.js - Yet another Migemo implementation in JavaScript
-Copyright 2011 Wakaba <w@suika.fam.cx>
+Copyright 2011 Wakaba <wakaba@suikawiki.org>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 2 as
@@ -1308,6 +1308,6 @@ under the directory "docs/xulmigemo/".
 See following git repositories for the latest version:
 
 - <https://github.com/wakaba/migemojs>
-- <http://suika.fam.cx/gate/git/wi/migemojs.git/tree>
+- <https://suika.suikawiki.org/gate/git/wi/migemojs.git/tree>
 
 */

@@ -12,7 +12,7 @@ This is a Migemo implementation in JavaScript.
 
 (Don't forget the |id| attribute of the first |script| element.)
 
-See also demo: <http://suika.suikawiki.org/migemojs/demos/getregexp.html>.
+See also demo: <https://suika.suikawiki.org/migemojs/demos/getregexp.html>.
 
 * Availability
 
@@ -28,7 +28,7 @@ Migemo: ローマ字のまま日本語をインクリメンタル検索
 XUL Apps > XUL/Migemo - outsider reflex
 <http://piro.sakura.ne.jp/xul/_xulmigemo.html>.
 
-SuikaWiki:Migemo <http://wiki.suikawiki.org/n/Migemo>.
+SuikaWiki:Migemo <https://wiki.suikawiki.org/n/Migemo>.
 
 * Author
 
